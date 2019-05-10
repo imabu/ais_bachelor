@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.loadfilewindow.LoadFileController">
+   <children>
+      <JFXButton fx:id="selectFileButton" buttonType="RAISED" layoutX="419.0" layoutY="25.0" onAction="#selectFileHandler" prefHeight="31.0" prefWidth="167.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ВЫБРАТЬ ФАЙЛ" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </JFXButton>
+      <ProgressBar fx:id="progressBar" layoutX="10.0" layoutY="66.0" prefHeight="18.0" prefWidth="582.0" progress="0.0" />
+      <TextArea fx:id="testAreaLog" layoutX="11.0" layoutY="91.0" prefHeight="146.0" prefWidth="582.0" />
+      <JFXButton fx:id="continueButton" buttonType="RAISED" layoutX="419.0" layoutY="349.0" prefHeight="31.0" prefWidth="167.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ДАЛЕЕ" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="previewButton" buttonType="RAISED" layoutX="419.0" layoutY="247.0" onAction="#previewHandler" prefHeight="31.0" prefWidth="167.0" ripplerFill="#8e8f90" style="-fx-background-color: #8e8f90;" text="ПРЕДПРОСМОТР" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="returnButton" buttonType="RAISED" layoutX="243.0" layoutY="349.0" prefHeight="31.0" prefWidth="167.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="НАЗАД" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="filePathArea" layoutX="11.0" layoutY="28.0" prefHeight="25.0" prefWidth="396.0" />
+
+   </children>
+</AnchorPane>
