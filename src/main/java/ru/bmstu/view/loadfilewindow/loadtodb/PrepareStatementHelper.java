@@ -56,7 +56,7 @@ public class PrepareStatementHelper {
             if (Objects.equals(data, "")) {
                 preparedStmnt.setNull(positionInQuery, Types.VARCHAR);
             } else {
-                preparedStmnt.setString(positionInQuery, (String) data);
+                preparedStmnt.setString(positionInQuery, String.valueOf(data));
             }
         } catch (SQLException ex) {
             logger.error("SQLException: " + ex.getMessage());

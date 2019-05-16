@@ -33,6 +33,7 @@ public class LoadFileToAppTask extends Task<Boolean> {
     protected Boolean call() throws Exception {
         double numberOfSheets = this.sheetsMeta.size();
         if (numberOfSheets > 0) {
+            updateProgress(0, numberOfSheets);
             updateLogOut("Загрузка файла " + this.sheetsMeta.get(0).getFilepath() + "...");
             for (int i = 0; i < numberOfSheets; i += 1) {
                 MetadataExcelSheet sheet = this.sheetsMeta.get(i);

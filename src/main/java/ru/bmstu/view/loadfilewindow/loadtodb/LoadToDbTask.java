@@ -64,13 +64,7 @@ public class LoadToDbTask extends Task {
             }
         }
         connection.commit();
-        try {
-            connection.prepareCall("{call tech_facilities.sp_etl_process_main()}").executeQuery();
-            connection.commit();
-        } catch (SQLException ex) {
-            logger.error("SQLException: " + ex.getMessage());
-            throw ex;
-        }
+
         connection.close();
     }
 
@@ -83,10 +77,24 @@ public class LoadToDbTask extends Task {
             upProgress();
             loadOneSheet(sheet);
             upProgress();
-            updateLogOut("Лист " + sheet.getSheetName() + " загружен в базу данных");
+            updateLogOut("Лист '" + sheet.getSheetName() + "' загружен в базу данных");
         }
 
+        runETLProcess();
         return null;
+    }
+
+    private void runETLProcess() throws SQLException {
+        Connection connection = ConnectionUtil.getConnection();
+        connection.setAutoCommit(false);
+        try {
+            connection.prepareCall("{call tech_facilities.sp_etl_process_main()}").executeQuery();
+            connection.commit();
+        } catch (SQLException ex) {
+            logger.error("SQLException: " + ex.getMessage());
+            throw ex;
+        }
+        connection.close();
     }
 
     private void upProgress() {
