@@ -1,4 +1,4 @@
-package ru.bmstu.view.loadfilewindow;
+package ru.bmstu.view.loadfilewindow.selectfile;
 
 import javafx.concurrent.Task;
 import org.apache.log4j.LogManager;
@@ -8,14 +8,14 @@ import ru.bmstu.parsingexcel.ParserExcelSheet;
 
 import java.util.List;
 
-public class LoadFileTask extends Task<Boolean> {
+public class LoadFileToAppTask extends Task<Boolean> {
 
     private Logger logger = LogManager.getLogger(getClass().getName());
     private List<MetadataExcelSheet> sheetsMeta;
     private StringBuilder logMessage = new StringBuilder();
     private boolean isSuccess;
 
-    LoadFileTask(List<MetadataExcelSheet> sheetsMeta) {
+    LoadFileToAppTask(List<MetadataExcelSheet> sheetsMeta) {
         this.sheetsMeta = sheetsMeta;
     }
 

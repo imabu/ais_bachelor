@@ -18,6 +18,7 @@ public class MetadataExcelSheetConstructor {
     public static List<MetadataExcelSheet> get(Path filePath) throws SQLException {
         Connection connection = ConnectionUtil.getConnection();
         String filename = filePath.getFileName().toString();
+        logger.info("Selected file: " + filename);
         List<MetadataExcelSheet> sheetsMeta = new ArrayList<>();
         List<String> sheetsList = null;
         try {

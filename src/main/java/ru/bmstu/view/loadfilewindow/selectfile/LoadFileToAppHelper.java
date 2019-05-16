@@ -1,4 +1,4 @@
-package ru.bmstu.view.loadfilewindow;
+package ru.bmstu.view.loadfilewindow.selectfile;
 
 import javafx.stage.FileChooser;
 import org.apache.log4j.LogManager;
@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoadFileHelper {
-    private static Logger logger = LogManager.getLogger(LoadFileHelper.class.getName());
+public class LoadFileToAppHelper {
+    private static Logger logger = LogManager.getLogger(LoadFileToAppHelper.class.getName());
     public static Path getFile() {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel(.xlsx)", "*.xlsx");
@@ -27,14 +27,14 @@ public class LoadFileHelper {
         return null;
     }
 
-    public static LoadFileTask getLoadTask(Path selectedFile) {
+    public static LoadFileToAppTask getLoadTask(Path selectedFile) {
         List<MetadataExcelSheet> sheetsMeta = new ArrayList<>();
         try {
             sheetsMeta = MetadataExcelSheetConstructor.get(selectedFile);
         } catch (SQLException e) {
             logger.error(e);
         }
-        return new LoadFileTask(sheetsMeta);
+        return new LoadFileToAppTask(sheetsMeta);
     }
 
 

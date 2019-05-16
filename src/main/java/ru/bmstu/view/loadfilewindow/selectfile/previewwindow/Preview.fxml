@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.loadfilewindow.previewwindow.PreviewController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.loadfilewindow.selectfile.previewwindow.PreviewController">
    <children>
       <TableView fx:id="tableView" layoutY="47.0" prefHeight="354.0" prefWidth="600.0" />
       <JFXComboBox fx:id="boxForSheetsNames" focusColor="#4375ff" layoutX="390.0" layoutY="14.0" onAction="#selectSheet" prefHeight="25.0" prefWidth="206.0" />

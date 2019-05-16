@@ -18,7 +18,7 @@ public class FileMetadataHelper {
         List<String> sheets = new ArrayList<>();
         try {
             String query = "select sheet_nm  " +
-                    "from metadata_tech.v_file_metadata_sheet " +
+                    "from metadata_tech.v_file_sheet " +
                     "where excel_file_nm = ? ";
             PreparedStatement st = connection.prepareStatement(query);
             st.setString(1, filename);
@@ -41,7 +41,7 @@ public class FileMetadataHelper {
         List<String> columnMeta = new ArrayList<>();
         try {
             String query = "select data_type  " +
-                    "from metadata_tech.v_file_metadata_column " +
+                    "from metadata_tech.v_file_column " +
                     "where excel_file_nm = ? " +
                     "and sheet_nm = ? ";
             PreparedStatement st = connection.prepareStatement(query);

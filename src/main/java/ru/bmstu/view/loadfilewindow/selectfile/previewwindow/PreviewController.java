@@ -1,4 +1,4 @@
-package ru.bmstu.view.loadfilewindow.previewwindow;
+package ru.bmstu.view.loadfilewindow.selectfile.previewwindow;
 
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -11,6 +11,8 @@ import javafx.scene.control.TableView;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.parsingexcel.MetadataExcelSheet;
+import ru.bmstu.view.Context;
+import ru.bmstu.view.loadfilewindow.LoadFileContextWrapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +29,12 @@ public class PreviewController {
     private Map<String, MetadataExcelSheet> excelSheetsMap;
     private Logger logger = LogManager.getLogger(getClass().getName());
 
-    public void setExcelSheets(List<MetadataExcelSheet> excelSheets) {
+    @FXML
+    private void initialize() {
+        configureExcelData(LoadFileContextWrapper.getExcelMeta());
+    }
+
+    public void configureExcelData(List<MetadataExcelSheet> excelSheets) {
         this.excelSheetsMap = new HashMap<>();
         for (MetadataExcelSheet sheet : excelSheets) {
             this.excelSheetsMap.put(sheet.getSheetName(), sheet);

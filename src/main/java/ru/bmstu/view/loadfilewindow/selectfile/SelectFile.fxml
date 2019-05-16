@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.loadfilewindow.LoadFileController">
+<AnchorPane prefHeight="393.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.loadfilewindow.selectfile.SelectFileController">
    <children>
       <JFXButton fx:id="selectFileButton" buttonType="RAISED" layoutX="419.0" layoutY="25.0" onAction="#selectFileHandler" prefHeight="31.0" prefWidth="167.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ВЫБРАТЬ ФАЙЛ" textFill="WHITE" textOverrun="CLIP">
          <font>
@@ -17,7 +17,7 @@
       </JFXButton>
       <ProgressBar fx:id="progressBar" layoutX="10.0" layoutY="66.0" prefHeight="18.0" prefWidth="582.0" progress="0.0" />
       <TextArea fx:id="testAreaLog" layoutX="11.0" layoutY="91.0" prefHeight="146.0" prefWidth="582.0" />
-      <JFXButton fx:id="continueButton" buttonType="RAISED" layoutX="419.0" layoutY="349.0" prefHeight="31.0" prefWidth="167.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ДАЛЕЕ" textFill="WHITE" textOverrun="CLIP">
+      <JFXButton fx:id="continueButton" buttonType="RAISED" layoutX="419.0" layoutY="349.0" onAction="#continueHandler" prefHeight="31.0" prefWidth="167.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ДАЛЕЕ" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Calibri" size="16.0" />
          </font>
@@ -27,7 +27,7 @@
             <Font name="Calibri" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="returnButton" buttonType="RAISED" layoutX="243.0" layoutY="349.0" prefHeight="31.0" prefWidth="167.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="НАЗАД" textFill="WHITE" textOverrun="CLIP">
+      <JFXButton fx:id="returnButton" buttonType="RAISED" layoutX="243.0" layoutY="349.0" onAction="#returnHandler" prefHeight="31.0" prefWidth="167.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="НАЗАД" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Calibri" size="16.0" />
          </font>

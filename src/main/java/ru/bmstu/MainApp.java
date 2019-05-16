@@ -11,6 +11,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.database.ConnectionUtil;
 import ru.bmstu.view.AlertVista;
+import ru.bmstu.view.Context;
 
 
 import java.io.IOException;
@@ -44,9 +45,10 @@ public class MainApp extends Application {
         Pane rootLayer = initRootLayout();
         VistaNavigator.loadVista(VistaNavigator.START_WINDOW);
         primaryStage.setScene(new Scene(rootLayer));
-        primaryStage.getIcons().add(new Image(String.valueOf(MainApp.class.getResource("/logo.png"))));
+        primaryStage.getIcons().add(new Image(String.valueOf(MainApp.class.getResource(VistaNavigator.ICON_FILE))));
         primaryStage.show();
         ConnectionUtil.checkConnection();
+        Context.init();
     }
 
     private Pane initRootLayout() {

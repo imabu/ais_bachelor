@@ -1,4 +1,4 @@
-package ru.bmstu.view.loadfilewindow;
+package ru.bmstu.view.loadfilewindow.selectfile;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -10,14 +10,16 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.VistaNavigator;
 import ru.bmstu.parsingexcel.MetadataExcelSheet;
-import ru.bmstu.view.loadfilewindow.previewwindow.PreviewController;
+import ru.bmstu.view.Context;
+import ru.bmstu.view.loadfilewindow.LoadFileContextWrapper;
+import ru.bmstu.view.loadfilewindow.selectfile.previewwindow.PreviewController;
 
 import java.nio.file.Path;
 import java.util.List;
 
-public class LoadFileController {
+public class SelectFileController {
 
-    List<MetadataExcelSheet> sheetsMeta;
+    private List<MetadataExcelSheet> sheetsMeta;
     @FXML
     private TextField filePathArea;
     @FXML
@@ -34,7 +36,7 @@ public class LoadFileController {
     private JFXButton previewButton;
     private Logger logger = LogManager.getLogger(getClass().getName());
 
-    public LoadFileController() {
+    public SelectFileController() {
     }
 
     @FXML
@@ -52,7 +54,7 @@ public class LoadFileController {
 
     @FXML
     public void selectFileHandler(ActionEvent ev) {
-        Path selectedFile = LoadFileHelper.getFile();
+        Path selectedFile = LoadFileToAppHelper.getFile();
         if (selectedFile != null) {
             filePathArea.setText(selectedFile.toString());
             filePathArea.setDisable(true);
@@ -64,7 +66,7 @@ public class LoadFileController {
     }
 
     private void runTaskLoad(Path selectedFile) {
-        LoadFileTask loadTask = LoadFileHelper.getLoadTask(selectedFile);
+        LoadFileToAppTask loadTask = LoadFileToAppHelper.getLoadTask(selectedFile);
         progressBar.progressProperty().bind(loadTask.progressProperty());
         testAreaLog.textProperty().bind(loadTask.messageProperty());
         loadTask.setOnSucceeded(event -> {
@@ -79,9 +81,19 @@ public class LoadFileController {
 
     @FXML
     public void previewHandler(ActionEvent ev) {
+        LoadFileContextWrapper.addExcelMeta(sheetsMeta);
         PreviewController previewController = (PreviewController) VistaNavigator.openNewVista(VistaNavigator.PREVIEW_FILE);
-        previewController.setExcelSheets(this.sheetsMeta);
     }
 
+    @FXML
+    public void continueHandler(ActionEvent ev) {
+        LoadFileContextWrapper.addExcelMeta(sheetsMeta);
+        VistaNavigator.loadVista(VistaNavigator.LOAD_TO_DB);
+    }
+
+    @FXML
+    public void returnHandler(ActionEvent ev) {
+        VistaNavigator.loadVista(VistaNavigator.START_WINDOW);
+    }
 
 }

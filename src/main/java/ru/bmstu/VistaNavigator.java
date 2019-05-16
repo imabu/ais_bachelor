@@ -2,6 +2,7 @@ package ru.bmstu;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -12,9 +13,11 @@ import java.io.IOException;
 public class VistaNavigator {
     public static final String MAIN = "/ru/bmstu/view/RootLayout.fxml";
     public static final String START_WINDOW = "/ru/bmstu/view/mainwindow/StartWindow.fxml";
-    public static final String OVERVIEW = "/ru/bmstu/view/personoverview/personOverview.fxml";
-    public static final String LOAD_FILE = "/ru/bmstu/view/loadfilewindow/LoadFile.fxml";
-    public static final String PREVIEW_FILE = "/ru/bmstu/view/loadfilewindow/previewwindow/Preview.fxml";
+    public static final String LOAD_FILE = "/ru/bmstu/view/loadfilewindow/selectfile/SelectFile.fxml";
+    public static final String PREVIEW_FILE = "/ru/bmstu/view/loadfilewindow/selectfile/previewwindow/Preview.fxml";
+    public static final String LOAD_TO_DB = "/ru/bmstu/view/loadfilewindow/loadtodb/LoadToDb.fxml";
+
+    public static final String ICON_FILE = "/logo.png";
     private static Logger logger = LogManager.getLogger(VistaNavigator.class.getName());
 
     private static MainController mainController;
@@ -40,6 +43,7 @@ public class VistaNavigator {
             fxmlLoader.setLocation(VistaNavigator.class.getResource(fxml));
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             Stage stage = new Stage();
+            stage.getIcons().add(new Image(String.valueOf(VistaNavigator.class.getResource(ICON_FILE))));
             stage.setScene(scene);
             stage.show();
             return fxmlLoader.getController();
