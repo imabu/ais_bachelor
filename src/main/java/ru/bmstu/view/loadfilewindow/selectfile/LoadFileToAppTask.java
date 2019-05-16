@@ -12,6 +12,7 @@ public class LoadFileToAppTask extends Task<Boolean> {
 
     private Logger logger = LogManager.getLogger(getClass().getName());
     private List<MetadataExcelSheet> sheetsMeta;
+    //TODO: вынести в общий мехнизм для Tasks
     private StringBuilder logMessage = new StringBuilder();
     private boolean isSuccess;
 
@@ -38,7 +39,7 @@ public class LoadFileToAppTask extends Task<Boolean> {
                 ParserExcelSheet parser = new ParserExcelSheet(sheet);
                 updateLogOut("Началась загрузка листа " + sheet.getSheetName() + "...");
                 parser.parse();
-                updateLogOut("Количество строк в листе: " + sheet.getRowNumber());
+                updateLogOut("Загрузка листа закончена. Количество строк в листе: " + sheet.getRowNumber());
                 updateProgress(i, numberOfSheets);
             }
             updateProgress(numberOfSheets, numberOfSheets);

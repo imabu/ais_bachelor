@@ -80,7 +80,6 @@ public class PreviewController {
             );
         }
         logger.info("Update table view with sheet " + sheet.getSheetName());
-        //this.tableView = tableView;
         this.tableView.refresh();
     }
 

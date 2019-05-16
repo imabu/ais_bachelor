@@ -1,5 +1,6 @@
 package ru.bmstu.parsingexcel;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,18 +19,6 @@ public class MetadataExcelSheet {
         this.sheetName = sheetName;
     }
 
-    public void setData(List<List<Object>> data) {
-        this.data = data;
-    }
-
-    public void setRowHeaders(List<String> rowHeaders) {
-        this.rowHeaders = rowHeaders;
-    }
-
-    public void setRowNumber(int rowNumber) {
-        this.rowNumber = rowNumber;
-    }
-
     public List<String> getMetaColumnDatatype() {
         return metaColumnDatatype;
     }
@@ -38,12 +27,24 @@ public class MetadataExcelSheet {
         return data;
     }
 
+    public void setData(List<List<Object>> data) {
+        this.data = data;
+    }
+
     public List<String> getRowHeaders() {
         return rowHeaders;
     }
 
+    public void setRowHeaders(List<String> rowHeaders) {
+        this.rowHeaders = rowHeaders;
+    }
+
     public int getRowNumber() {
         return rowNumber;
+    }
+
+    public void setRowNumber(int rowNumber) {
+        this.rowNumber = rowNumber;
     }
 
     public String getFilepath() {
@@ -52,5 +53,9 @@ public class MetadataExcelSheet {
 
     public String getSheetName() {
         return sheetName;
+    }
+
+    public String getFileName() {
+        return Paths.get(this.filepath).getFileName().toString();
     }
 }

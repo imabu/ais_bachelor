@@ -43,7 +43,8 @@ public class FileMetadataHelper {
             String query = "select data_type  " +
                     "from metadata_tech.v_file_column " +
                     "where excel_file_nm = ? " +
-                    "and sheet_nm = ? ";
+                    "and sheet_nm = ? " +
+                    "order by column_order_num";
             PreparedStatement st = connection.prepareStatement(query);
             st.setString(1, filename);
             st.setString(2, sheetname);
@@ -59,6 +60,31 @@ public class FileMetadataHelper {
         }
         connection.close();
         return columnMeta;
+
+    }
+
+    public static String getStgTableNM(String filename,
+                                       String sheetname) throws SQLException {
+        Connection connection = ConnectionUtil.getConnection() ;
+
+        String stgTableNm = "";
+        try {
+            String query = "select stg_table_nm  " +
+                    "from metadata_tech.v_file_sheet_x_stg_table " +
+                    "where file_nm = ? and sheet_nm=? ";
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, filename);
+            st.setString(2, sheetname);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                stgTableNm = rs.getString("stg_table_nm");
+            }
+        } catch (SQLException ex) {
+            logger.error("SQLException: " + ex.getMessage());
+            throw ex;
+        }
+        connection.close();
+        return stgTableNm;
 
     }
 }
