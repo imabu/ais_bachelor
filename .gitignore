@@ -1,5 +1,6 @@
 #project specific
 /tmp
+*fsd.xlsx
 
 # Binaries
 *.7z

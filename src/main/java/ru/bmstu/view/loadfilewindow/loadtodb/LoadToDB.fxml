@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="392.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.loadfilewindow.loadtodb.LoadToDBController">
+   <children>
+      <JFXButton fx:id="returnMainMenuButton" buttonType="RAISED" layoutX="352.0" layoutY="347.0" onAction="#returnMainMenuHandler" prefHeight="31.0" prefWidth="240.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ВЕРНУТЬСЯ В ГЛАВНОЕ МЕНЮ" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </JFXButton>
+      <ProgressBar fx:id="progressBar" layoutX="10.0" layoutY="31.0" prefHeight="18.0" prefWidth="582.0" progress="0.0" />
+      <TextArea fx:id="textAreaLog" layoutX="10.0" layoutY="54.0" prefHeight="146.0" prefWidth="582.0" />
+      <JFXButton fx:id="cancelButton" buttonType="RAISED" layoutX="462.0" layoutY="210.0" onAction="#cancelHandler" prefHeight="31.0" prefWidth="130.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ОТМЕНА" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

@@ -60,7 +60,7 @@ public class ParserExcelSheet {
                                             rowData.add(currentCell.getNumericCellValue());
                                             break;
                                         case STRING:
-                                            rowData.add(currentCell.getRichStringCellValue());
+                                            rowData.add(currentCell.getRichStringCellValue().getString());
                                             break;
                                     }
                             }
