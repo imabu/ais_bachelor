@@ -19,12 +19,19 @@ public class SelectTableHelper {
         String query = "select " + String.join(", ", metadata.getColumnNames()) +
                 " from tech_facilities." + metadata.getTableName();
         List<List<Object>> data = new ArrayList<>();
+        logger.debug(query);
         try {
             ResultSet rs = connection.createStatement().executeQuery(query);
             while (rs.next()) {
                 List<Object> row = new ArrayList<>();
                 for (String column : metadata.getColumnNames()) {
-                    row.add(rs.getString(column));
+                    String val = rs.getString(column);
+                    if (rs.wasNull()) {
+                        logger.debug(column + " is null");
+                        row.add("");
+                    } else {
+                        row.add(val);
+                    }
                 }
                 data.add(row);
             }

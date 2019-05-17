@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.lookupwindow.GeneralLookUpController">
    <children>
       <JFXButton fx:id="getDataButton" buttonType="RAISED" layoutX="215.0" layoutY="14.0" onAction="#getData" prefHeight="27.0" prefWidth="171.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ПОЛУЧИТЬ ДАННЫЕ " textFill="WHITE" textOverrun="CLIP">
@@ -17,5 +16,15 @@
          </font>
       </JFXButton>
       <TableView fx:id="tableView" layoutY="57.0" prefHeight="345.0" prefWidth="601.0" />
+      <JFXButton fx:id="saveToExcelButton" buttonType="RAISED" layoutX="475.0" layoutY="14.0" onAction="#saveToExcel" prefHeight="30.0" prefWidth="112.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="Выгрузить" textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="entityNmLabel" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="444.0" text="Label">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

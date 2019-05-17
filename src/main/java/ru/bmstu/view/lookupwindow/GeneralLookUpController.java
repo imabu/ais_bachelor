@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -18,6 +19,12 @@ import java.util.List;
 
 public class GeneralLookUpController {
     @FXML
+    private Label entityNmLabel;
+
+    @FXML
+    private JFXButton saveToExcelButton;
+
+    @FXML
     private JFXButton getDataButton;
     @FXML
     private TableView<ObservableList<String>> tableView;
@@ -25,7 +32,14 @@ public class GeneralLookUpController {
     private String tableName;
     private Logger logger = LogManager.getLogger(getClass().getName());
 
-    private void setContext() {
+    @FXML
+    private void initialize() {
+        this.saveToExcelButton.setVisible(false);
+        this.entityNmLabel.setVisible(false);
+        this.entityNmLabel.setText("");
+    }
+
+    private void getContext() {
         this.tableName = (String) Context.getContextObject(this.toString());
         logger.info("initialize controller for table " + this.tableName);
         Context.removeContextObject(this.toString());
@@ -33,11 +47,24 @@ public class GeneralLookUpController {
 
     @FXML
     void getData(ActionEvent event) throws SQLException {
-        setContext();
+        getContext();
         MetadataTable meta = SelectTableHelper.getMetadataTable(this.tableName);
         List<List<Object>> data = SelectTableHelper.getDataFromTable(meta);
 
         GeneralTableView.buildTableView(this.tableView, meta.getColumnNamesRUS(), data);
         TableFilter.forTableView(this.tableView).apply();
+        changeHeaderView(meta.getTableNameRUS());
+    }
+
+    @FXML
+    void saveToExcel(ActionEvent event) {
+
+    }
+
+    private void changeHeaderView(String header) {
+        this.getDataButton.setVisible(false);
+        this.saveToExcelButton.setVisible(true);
+        this.entityNmLabel.setVisible(true);
+        this.entityNmLabel.setText(header);
     }
 }

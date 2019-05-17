@@ -17,7 +17,7 @@ public class GeneralTableView {
     public static void buildTableView(TableView<ObservableList<String>> tableView,
                                       List<String> columnNames,
                                       List<List<Object>> data) {
-
+        logger.debug(data);
         logger.info("Column name " + columnNames);
         tableView.getColumns().clear();
         for (int i = 0; i < columnNames.size(); i++) {

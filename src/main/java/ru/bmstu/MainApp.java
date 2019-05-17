@@ -41,7 +41,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("АИС БлаБлаБла");
+        primaryStage.setTitle(VistaNavigator.APP_NM);
         Pane rootLayer = initRootLayout();
         VistaNavigator.loadVista(VistaNavigator.START_WINDOW);
         primaryStage.setScene(new Scene(rootLayer));

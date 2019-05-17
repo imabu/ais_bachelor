@@ -45,10 +45,8 @@ public class ParserExcelSheet {
                             logger.debug("Row #" + readRows + " " + currentCell.getCellType().name());
                             rowData.add(extractDataFromCell(currentCell));
                         }
-
                         sheetData.add(rowData);
                     }
-
                 }
             }
         } catch (IOException e) {

@@ -19,7 +19,7 @@ public class VistaNavigator {
     public static final String LOOK_UP_WINDOW = "/ru/bmstu/view/lookupwindow/LookupWindow.fxml";
     public static final String GENERAL_LOOK_UP_WINDOW = "/ru/bmstu/view/lookupwindow/GeneralLookUpWindow.fxml";
 
-
+    public static final String APP_NM = "АИС БлаБла";
     public static final String ICON_FILE = "/logo.png";
     private static Logger logger = LogManager.getLogger(VistaNavigator.class.getName());
 
@@ -47,6 +47,7 @@ public class VistaNavigator {
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             Stage stage = new Stage();
             stage.getIcons().add(new Image(String.valueOf(VistaNavigator.class.getResource(ICON_FILE))));
+            stage.setTitle(APP_NM);
             stage.setScene(scene);
             stage.show();
             return fxmlLoader.getController();
