@@ -1,4 +1,4 @@
-package ru.bmstu.view;
+package ru.bmstu.view.alerts;
 
 import javafx.scene.control.Alert;
 

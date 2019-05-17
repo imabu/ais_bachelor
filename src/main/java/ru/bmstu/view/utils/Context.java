@@ -1,4 +1,4 @@
-package ru.bmstu.view;
+package ru.bmstu.view.utils;
 
 import java.util.HashMap;
 import java.util.Map;

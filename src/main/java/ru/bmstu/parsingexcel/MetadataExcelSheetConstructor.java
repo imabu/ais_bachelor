@@ -4,7 +4,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.database.ConnectionUtil;
 import ru.bmstu.database.FileMetadataHelper;
-import ru.bmstu.view.AlertVista;
+import ru.bmstu.view.alerts.AlertVista;
 
 import java.nio.file.Path;
 import java.sql.Connection;

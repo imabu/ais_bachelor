@@ -29,42 +29,23 @@ public class ParserExcelSheet {
             FileInputStream excelFile = new FileInputStream(new File(excel.getFilepath()));
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = workbook.getSheet(excel.getSheetName());
+            int COLUMN_CN = 0;
             for (Row currentRow : datatypeSheet) {
                 if (!checkIfRowIsEmpty(currentRow)) {
                     readRows += 1;
                     if (readRows == 1) {
                         for (Cell currentCell : currentRow) {
                             rowHeaders.add(currentCell.getStringCellValue());
+                            COLUMN_CN = rowHeaders.size();
                         }
                     } else {
-                        List<Object> rowData = new ArrayList<Object>();
-                        for (Cell currentCell : currentRow) {
-                            switch (currentCell.getCellType()) {
-                                case STRING:
-                                    rowData.add(currentCell.getStringCellValue());
-                                    break;
-                                case NUMERIC:
-                                    if (DateUtil.isCellDateFormatted(currentCell)) {
-                                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                                        rowData.add(dateFormat.format(currentCell.getDateCellValue()));
-                                    } else {
-                                        rowData.add(currentCell.getNumericCellValue());
-                                    }
-                                    break;
-                                case BLANK:
-                                    rowData.add("");
-                                    break;
-                                case FORMULA:
-                                    switch(currentCell.getCachedFormulaResultType()) {
-                                        case NUMERIC:
-                                            rowData.add(currentCell.getNumericCellValue());
-                                            break;
-                                        case STRING:
-                                            rowData.add(currentCell.getRichStringCellValue().getString());
-                                            break;
-                                    }
-                            }
+                        List<Object> rowData = new ArrayList<>();
+                        for (int i = 0; i < COLUMN_CN; i += 1) {
+                            Cell currentCell = currentRow.getCell(i, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                            logger.debug("Row #" + readRows + " " + currentCell.getCellType().name());
+                            rowData.add(extractDataFromCell(currentCell));
                         }
+
                         sheetData.add(rowData);
                     }
 
@@ -72,6 +53,8 @@ public class ParserExcelSheet {
             }
         } catch (IOException e) {
             logger.error(e.getMessage());
+        } catch (Exception e) {
+            logger.error(e);
         }
         excel.setRowNumber(readRows);
         excel.setRowHeaders(rowHeaders);
@@ -80,6 +63,35 @@ public class ParserExcelSheet {
         return sheetData;
     }
 
+    private Object extractDataFromCell(Cell currentCell) {
+        Object data = "";
+        switch (currentCell.getCellType()) {
+            case STRING:
+                data = currentCell.getStringCellValue();
+                break;
+            case NUMERIC:
+                if (DateUtil.isCellDateFormatted(currentCell)) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    data = dateFormat.format(currentCell.getDateCellValue());
+                } else {
+                    data = currentCell.getNumericCellValue();
+                }
+                break;
+            case BLANK:
+                data = "";
+                break;
+            case FORMULA:
+                switch (currentCell.getCachedFormulaResultType()) {
+                    case NUMERIC:
+                        data = currentCell.getNumericCellValue();
+                        break;
+                    case STRING:
+                        data = currentCell.getRichStringCellValue().getString();
+                        break;
+                }
+        }
+        return data;
+    }
 
     private boolean checkIfRowIsEmpty(Row row) {
         if (row == null) {

@@ -1,7 +1,7 @@
 package ru.bmstu.view.loadfilewindow;
 
 import ru.bmstu.parsingexcel.MetadataExcelSheet;
-import ru.bmstu.view.Context;
+import ru.bmstu.view.utils.Context;
 
 import java.util.List;
 

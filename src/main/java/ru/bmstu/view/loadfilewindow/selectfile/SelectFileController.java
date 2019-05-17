@@ -10,7 +10,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.VistaNavigator;
 import ru.bmstu.parsingexcel.MetadataExcelSheet;
-import ru.bmstu.view.Context;
 import ru.bmstu.view.loadfilewindow.LoadFileContextWrapper;
 import ru.bmstu.view.loadfilewindow.selectfile.previewwindow.PreviewController;
 

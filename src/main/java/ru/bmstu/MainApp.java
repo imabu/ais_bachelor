@@ -10,8 +10,8 @@ import javafx.stage.Stage;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.database.ConnectionUtil;
-import ru.bmstu.view.AlertVista;
-import ru.bmstu.view.Context;
+import ru.bmstu.view.alerts.AlertVista;
+import ru.bmstu.view.utils.Context;
 
 
 import java.io.IOException;

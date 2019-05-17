@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.lookupwindow.GeneralLookUpController">
+   <children>
+      <JFXButton fx:id="getDataButton" buttonType="RAISED" layoutX="215.0" layoutY="14.0" onAction="#getData" prefHeight="27.0" prefWidth="171.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ПОЛУЧИТЬ ДАННЫЕ " textFill="WHITE" textOverrun="CLIP">
+         <font>
+            <Font name="Calibri" size="16.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tableView" layoutY="57.0" prefHeight="345.0" prefWidth="601.0" />
+   </children>
+</AnchorPane>

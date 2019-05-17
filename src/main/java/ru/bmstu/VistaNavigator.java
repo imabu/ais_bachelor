@@ -16,6 +16,9 @@ public class VistaNavigator {
     public static final String LOAD_FILE = "/ru/bmstu/view/loadfilewindow/selectfile/SelectFile.fxml";
     public static final String PREVIEW_FILE = "/ru/bmstu/view/loadfilewindow/selectfile/previewwindow/Preview.fxml";
     public static final String LOAD_TO_DB = "/ru/bmstu/view/loadfilewindow/loadtodb/LoadToDb.fxml";
+    public static final String LOOK_UP_WINDOW = "/ru/bmstu/view/lookupwindow/LookupWindow.fxml";
+    public static final String GENERAL_LOOK_UP_WINDOW = "/ru/bmstu/view/lookupwindow/GeneralLookUpWindow.fxml";
+
 
     public static final String ICON_FILE = "/logo.png";
     private static Logger logger = LogManager.getLogger(VistaNavigator.class.getName());

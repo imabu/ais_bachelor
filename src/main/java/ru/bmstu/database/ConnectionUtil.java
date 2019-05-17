@@ -3,7 +3,7 @@ package ru.bmstu.database;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import ru.bmstu.view.AlertVista;
+import ru.bmstu.view.alerts.AlertVista;
 
 import java.sql.Connection;
 import java.sql.SQLException;
