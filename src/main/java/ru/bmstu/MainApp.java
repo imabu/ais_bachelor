@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.database.ConnectionUtil;
-import ru.bmstu.view.alerts.AlertVista;
+import ru.bmstu.view.modals.AlertVista;
 import ru.bmstu.view.utils.Context;
 
 
@@ -58,7 +58,7 @@ public class MainApp extends Application {
             URL rootLayoutPath = MainApp.class.getResource(VistaNavigator.MAIN);
             logger.info("Root layout fxml-file: " + rootLayoutPath);
             if (rootLayoutPath == null){
-                AlertVista.throwAlert("Внутренняя ошибка: не найден корневой слой. Приложение устсановлено неверно");
+                AlertVista.throwAlertError("Внутренняя ошибка: не найден корневой слой. Приложение устсановлено неверно");
             }else {
                 loader.setLocation(rootLayoutPath);
                 rootLayout = (BorderPane) loader.load();

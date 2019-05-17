@@ -16,6 +16,7 @@ import ru.bmstu.database.SelectTableHelper;
 import ru.bmstu.parsingexcel.MetadataExcelSheet;
 import ru.bmstu.parsingexcel.MetadataExcelSheetConstructor;
 import ru.bmstu.parsingexcel.WritterToExcel;
+import ru.bmstu.view.modals.AlertVista;
 import ru.bmstu.view.utils.Context;
 import ru.bmstu.view.utils.GeneralTableView;
 
@@ -79,6 +80,7 @@ public class GeneralLookUpController {
             MetadataExcelSheet metaSheet = MetadataExcelSheetConstructor.get(data, meta.getColumnNamesRUS());
             new WritterToExcel(metaSheet).write(fileOut);
             logger.info("Data was saved in " + fileOut.getAbsolutePath());
+            AlertVista.throwAlertInfo("Сохранено в " + fileOut.getAbsolutePath());
         }
     }
 

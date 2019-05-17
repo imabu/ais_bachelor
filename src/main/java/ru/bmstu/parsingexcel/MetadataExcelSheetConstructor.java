@@ -4,7 +4,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.database.ConnectionUtil;
 import ru.bmstu.database.FileMetadataHelper;
-import ru.bmstu.view.alerts.AlertVista;
+import ru.bmstu.view.modals.AlertVista;
 
 import java.nio.file.Path;
 import java.sql.Connection;
@@ -25,7 +25,7 @@ public class MetadataExcelSheetConstructor {
             sheetsList = FileMetadataHelper.getSheetsNames(filename);
         } catch (SQLException e) {
             logger.error(e);
-            AlertVista.throwAlert("Ошибка при работе с базой данных");
+            AlertVista.throwAlertError("Ошибка при работе с базой данных");
         }
         for (String sheet : sheetsList) {
             List<String> colMetadata = FileMetadataHelper.getColumnMetadata(filename, sheet);

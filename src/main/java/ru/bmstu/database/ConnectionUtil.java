@@ -3,7 +3,7 @@ package ru.bmstu.database;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import ru.bmstu.view.alerts.AlertVista;
+import ru.bmstu.view.modals.AlertVista;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -44,7 +44,7 @@ public class ConnectionUtil {
             return dataSource.getConnection();
         } catch (SQLException e) {
             logger.error(e);
-            AlertVista.throwAlert("Нет подключения к базе данных");
+            AlertVista.throwAlertError("Нет подключения к базе данных");
         }
         return null;
     }
