@@ -34,4 +34,8 @@ public class MetadataExcelSheetConstructor {
         connection.close();
         return sheetsMeta;
     }
+
+    public static MetadataExcelSheet get(List<List<Object>> data, List<String> rowHeaders) {
+        return new MetadataExcelSheet(data, rowHeaders);
+    }
 }

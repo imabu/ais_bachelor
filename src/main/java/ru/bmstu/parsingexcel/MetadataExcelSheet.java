@@ -9,16 +9,13 @@ public class MetadataExcelSheet {
     private List<List<Object>> data = new ArrayList<>();
     private List<String> rowHeaders;
     private int rowNumber;
-
-    public MetadataExcelSheet(List<String> metaColumnDatatype, List<List<Object>> data, List<String> rowHeaders) {
-        this.metaColumnDatatype = metaColumnDatatype;
-        this.data = data;
-        this.rowHeaders = rowHeaders;
-    }
-
     private String filepath;
     private String sheetName;
 
+    public MetadataExcelSheet(List<List<Object>> data, List<String> rowHeaders) {
+        this.data = data;
+        this.rowHeaders = rowHeaders;
+    }
 
     public MetadataExcelSheet(String filepath, List<String> metaColumnDatatype, String sheetName) {
         this.filepath = filepath;
