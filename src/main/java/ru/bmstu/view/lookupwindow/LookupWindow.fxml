@@ -10,22 +10,22 @@
 
 <AnchorPane prefHeight="391.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.lookupwindow.LookupController">
    <children>
-      <JFXButton fx:id="selectPowerRank" buttonType="RAISED" layoutX="39.0" layoutY="13.0" prefHeight="43.0" prefWidth="186.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ШКАФ СИЛОВОЙ" textFill="WHITE" textOverrun="CLIP">
+      <JFXButton fx:id="selectPowerRank" buttonType="RAISED" layoutX="210.0" layoutY="27.0" prefHeight="43.0" prefWidth="186.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ШКАФ СИЛОВОЙ" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Calibri" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="selectCableLine" buttonType="RAISED" layoutX="359.0" layoutY="13.0" prefHeight="43.0" prefWidth="186.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="КАБ ЛИНИЯ" textFill="WHITE" textOverrun="CLIP">
+      <JFXButton fx:id="selectCableLine" buttonType="RAISED" layoutX="210.0" layoutY="166.0" prefHeight="43.0" prefWidth="186.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="КАБ ЛИНИЯ" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Calibri" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="selectPowerControlBoard" buttonType="RAISED" layoutX="39.0" layoutY="78.0" prefHeight="43.0" prefWidth="186.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ЩСУ" textFill="WHITE" textOverrun="CLIP">
+      <JFXButton fx:id="selectPowerControlBoard" buttonType="RAISED" layoutX="210.0" layoutY="94.0" prefHeight="43.0" prefWidth="186.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ЩСУ" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Calibri" size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="selectChangeoverPanelLight" buttonType="RAISED" layoutX="359.0" layoutY="78.0" prefHeight="43.0" prefWidth="186.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ЩО" textFill="WHITE" textOverrun="CLIP">
+      <JFXButton fx:id="selectChangeoverPanelLight" buttonType="RAISED" layoutX="210.0" layoutY="233.0" prefHeight="43.0" prefWidth="186.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ЩО" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Calibri" size="16.0" />
          </font>

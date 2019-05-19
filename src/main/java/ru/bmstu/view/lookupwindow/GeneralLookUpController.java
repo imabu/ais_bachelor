@@ -11,8 +11,8 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.table.TableFilter;
 import ru.bmstu.VistaNavigator;
-import ru.bmstu.database.MetadataTable;
 import ru.bmstu.database.SelectTableHelper;
+import ru.bmstu.database.models.MetadataTable;
 import ru.bmstu.parsingexcel.MetadataExcelSheet;
 import ru.bmstu.parsingexcel.MetadataExcelSheetConstructor;
 import ru.bmstu.parsingexcel.WritterToExcel;
@@ -59,7 +59,7 @@ public class GeneralLookUpController {
     @FXML
     void getData(ActionEvent event) throws SQLException {
         getContext();
-        this.meta = SelectTableHelper.getMetadataTable(this.tableName);
+        this.meta = SelectTableHelper.getMetadataTableFromCustomMeta(this.tableName);
         List<List<Object>> data = SelectTableHelper.getDataFromTable(meta);
 
         GeneralTableView.buildTableView(this.tableView, this.meta.getColumnNamesRUS(), data);
@@ -95,6 +95,7 @@ public class GeneralLookUpController {
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLSX files (*.xlsx)", "*.xlsx");
         fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName(meta.getTableNameRUS() + ".xlsx");
         return fileChooser.showSaveDialog(VistaNavigator.getPrimaryStage());
     }
 }

@@ -27,6 +27,7 @@ public class LoadToDBController {
     private TextArea textAreaLog;
 
     private List<MetadataExcelSheet> sheetsMeta;
+    private Thread taskThread;
 
     private LoadToDbTask task;
     private Logger logger = LogManager.getLogger(getClass().getName());
@@ -45,7 +46,7 @@ public class LoadToDBController {
 
     @FXML
     private void cancelHandler(ActionEvent event) {
-        this.task.cancel();
+        this.taskThread.interrupt();
     }
 
     private void runLoadToDB() {
@@ -54,7 +55,8 @@ public class LoadToDBController {
         progressBar.progressProperty().bind(this.task.progressProperty());
         this.task.setOnSucceeded(event -> cancelButton.setDisable(true));
 
-        new Thread(this.task).start();
+        this.taskThread = new Thread(this.task);
+        this.taskThread.start();
     }
 
 }

@@ -37,6 +37,7 @@ public class LoadToDbTask extends Task {
             connection.createStatement().executeUpdate(query);
         } catch (SQLException ex) {
             logger.error("SQLException: " + ex.getMessage());
+            connection.close();
             throw ex;
         }
         List<String> rowHeaders = sheet.getRowHeaders();
@@ -48,6 +49,7 @@ public class LoadToDbTask extends Task {
             preparedStmnt = connection.prepareStatement(query);
         } catch (SQLException ex) {
             logger.error("SQLException: " + ex.getMessage());
+            connection.close();
             throw ex;
         }
         List<String> metaColumnDatatype = sheet.getMetaColumnDatatype();
@@ -59,6 +61,7 @@ public class LoadToDbTask extends Task {
                 preparedStmnt.executeUpdate();
                 upProgress();
             } catch (SQLException ex) {
+                connection.close();
                 logger.error("SQLException: " + ex.getMessage());
                 throw ex;
             }
@@ -79,19 +82,22 @@ public class LoadToDbTask extends Task {
             upProgress();
             updateLogOut("Лист '" + sheet.getSheetName() + "' загружен в базу данных");
         }
-
+        updateLogOut("Запуск процесса трансформации данных ... ");
         runETLProcess();
+        updateLogOut("Процесс завершен успешно");
         return null;
     }
 
     private void runETLProcess() throws SQLException {
         Connection connection = ConnectionUtil.getConnection();
-        connection.setAutoCommit(false);
+        connection.setAutoCommit(true);
         try {
             connection.prepareCall("{call tech_facilities.sp_etl_process_main()}").executeQuery();
-            connection.commit();
+            //connection.commit();
         } catch (SQLException ex) {
+            updateLogOut("Сбой загрузки");
             logger.error("SQLException: " + ex.getMessage());
+            connection.close();
             throw ex;
         }
         connection.close();

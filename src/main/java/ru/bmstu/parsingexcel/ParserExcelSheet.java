@@ -21,7 +21,7 @@ public class ParserExcelSheet {
         this.excel = excel;
     }
 
-    public List<List<Object>> parse() {
+    public List<List<Object>> parse() throws ParseExcelException{
         List<List<Object>> sheetData = new ArrayList<>();
         List<String> rowHeaders = new ArrayList<>();
         int readRows = 0;
@@ -29,6 +29,10 @@ public class ParserExcelSheet {
             FileInputStream excelFile = new FileInputStream(new File(excel.getFilepath()));
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = workbook.getSheet(excel.getSheetName());
+            if (datatypeSheet == null) {
+                throw new ParseExcelException("Sheet " + excel.getSheetName() + "not found in file", excel.getSheetName(),
+                        ParseExcelException.ParceExceptionType.SHEET_NOT_FOUND);
+            }
             int COLUMN_CN = 0;
             for (Row currentRow : datatypeSheet) {
                 if (!checkIfRowIsEmpty(currentRow)) {
@@ -42,7 +46,7 @@ public class ParserExcelSheet {
                         List<Object> rowData = new ArrayList<>();
                         for (int i = 0; i < COLUMN_CN; i += 1) {
                             Cell currentCell = currentRow.getCell(i, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
-                            logger.debug("Row #" + readRows + " " + currentCell.getCellType().name());
+                            //logger.debug("Row #" + readRows + " " + currentCell.getCellType().name());
                             rowData.add(extractDataFromCell(currentCell));
                         }
                         sheetData.add(rowData);
@@ -52,6 +56,7 @@ public class ParserExcelSheet {
         } catch (IOException e) {
             logger.error(e.getMessage());
         } catch (Exception e) {
+            e.printStackTrace();
             logger.error(e);
         }
         excel.setRowNumber(readRows);

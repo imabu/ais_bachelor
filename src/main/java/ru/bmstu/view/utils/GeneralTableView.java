@@ -17,8 +17,7 @@ public class GeneralTableView {
     public static void buildTableView(TableView<ObservableList<String>> tableView,
                                       List<String> columnNames,
                                       List<List<Object>> data) {
-        logger.debug(data);
-        logger.info("Column name " + columnNames);
+        logger.debug("Column name " + columnNames);
         tableView.getColumns().clear();
         for (int i = 0; i < columnNames.size(); i++) {
             final int finalIdx = i;
@@ -36,7 +35,6 @@ public class GeneralTableView {
             List<String> dataStr = datum.stream()
                     .map(Object::toString)
                     .collect(Collectors.toList());
-            logger.info(dataStr);
             tableView.getItems().add(
                     FXCollections.observableArrayList(dataStr)
             );

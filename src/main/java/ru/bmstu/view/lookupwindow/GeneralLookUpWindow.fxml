@@ -16,7 +16,7 @@
          </font>
       </JFXButton>
       <TableView fx:id="tableView" layoutY="57.0" prefHeight="345.0" prefWidth="601.0" />
-      <JFXButton fx:id="saveToExcelButton" buttonType="RAISED" layoutX="475.0" layoutY="14.0" onAction="#saveToExcel" prefHeight="30.0" prefWidth="112.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="Выгрузить" textFill="WHITE" textOverrun="CLIP">
+      <JFXButton fx:id="saveToExcelButton" buttonType="RAISED" layoutX="443.0" layoutY="14.0" onAction="#saveToExcel" prefHeight="30.0" prefWidth="144.0" ripplerFill="#4375ff" style="-fx-background-color: #4375ff;" text="ВЫГРУЗИТЬ" textFill="WHITE" textOverrun="CLIP">
          <font>
             <Font name="Calibri" size="16.0" />
          </font>
