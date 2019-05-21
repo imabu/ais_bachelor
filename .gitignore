@@ -1,6 +1,7 @@
 #project specific
-/tmp
-*fsd.xlsx
+tmp
+src/main/resources/*fsd*
+src/main/resources/*specification*
 
 # Binaries
 *.7z
