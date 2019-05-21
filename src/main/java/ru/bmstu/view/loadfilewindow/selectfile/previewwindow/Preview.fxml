@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
@@ -8,14 +9,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.loadfilewindow.selectfile.previewwindow.PreviewController">
+
+<GridPane alignment="CENTER_RIGHT" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.loadfilewindow.selectfile.previewwindow.PreviewController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" percentHeight="10.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="90.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <TableView fx:id="tableView" layoutY="47.0" prefHeight="354.0" prefWidth="600.0" />
-      <JFXComboBox fx:id="boxForSheetsNames" focusColor="#4375ff" layoutX="390.0" layoutY="14.0" onAction="#selectSheet" prefHeight="25.0" prefWidth="206.0" />
-      <Label layoutX="348.0" layoutY="13.0" prefHeight="31.0" prefWidth="35.0" text="Лист:">
-         <font>
-            <Font name="Calibri" size="14.0" />
-         </font>
-      </Label>
+      <TableView fx:id="tableView" prefHeight="400.0" prefWidth="600.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS" />
+      <Pane GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <children>
+            <JFXComboBox fx:id="boxForSheetsNames" focusColor="#4375ff" layoutX="370.0" layoutY="10.0" onAction="#selectSheet" prefHeight="25.0" prefWidth="216.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="4.0" layoutY="7.0" prefHeight="31.0" prefWidth="354.0" text="Лист:">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </Pane>
    </children>
-</AnchorPane>
+</GridPane>

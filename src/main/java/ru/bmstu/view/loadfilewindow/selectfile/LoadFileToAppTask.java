@@ -49,7 +49,6 @@ public class LoadFileToAppTask extends Task<Boolean> {
                 } catch (ParseExcelException ex) {
                     logger.error(ex);
                     outParseExceptionToUser(ex.getType(), ex.getAdditionalInfo());
-
                 }
                 updateProgress(i, numberOfSheets);
             }
@@ -71,7 +70,7 @@ public class LoadFileToAppTask extends Task<Boolean> {
     private void outParseExceptionToUser(ParceExceptionType type, String info) {
         switch (type) {
             case SHEET_NOT_FOUND:
-                updateLogOut("В файле не найден лист " + info + ", объявленный в спецификации");
+                updateLogOut("В файле не найден лист '" + info + "', объявленный в спецификации");
                 break;
             default:
                 break;

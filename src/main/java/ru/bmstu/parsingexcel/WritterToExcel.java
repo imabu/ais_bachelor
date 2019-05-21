@@ -16,7 +16,6 @@ public class WritterToExcel {
     private MetadataExcelSheet excel;
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
-    private Font boldFont;
     private CellStyle headerStyle;
     private Logger logger = LogManager.getLogger(getClass().getName());
 
@@ -25,7 +24,6 @@ public class WritterToExcel {
         this.excel = excel;
         this.workbook = new XSSFWorkbook();
         this.sheet = this.workbook.createSheet();
-        initBoldFont();
         initHeaderStyle();
     }
 
@@ -44,10 +42,12 @@ public class WritterToExcel {
     private void buildXSSFWorkbook() {
         List<String> headers = excel.getRowHeaders();
         XSSFRow header = this.sheet.createRow(0);
+
         for (int i = 0; i < headers.size(); i += 1) {
             header.createCell(i).setCellValue(headers.get(i));
             sheet.autoSizeColumn(i);
         }
+        header.setRowStyle(headerStyle);
 
         List<List<Object>> data = excel.getData();
         for (int i = 0; i < data.size(); i += 1) {
@@ -62,6 +62,9 @@ public class WritterToExcel {
     private void initHeaderStyle() {
         headerStyle = workbook.createCellStyle();
         headerStyle.setFillForegroundColor(IndexedColors.GREY_50_PERCENT.getIndex());
+        Font boldFont = workbook.createFont();
+        boldFont.setBold(true);
+        boldFont.setFontHeightInPoints((short) 12);
         headerStyle.setFont(boldFont);
         headerStyle.setAlignment(HorizontalAlignment.CENTER);
         headerStyle.setVerticalAlignment(VerticalAlignment.CENTER);
@@ -69,10 +72,6 @@ public class WritterToExcel {
         headerStyle.setWrapText(true);
     }
 
-    private void initBoldFont() {
-        boldFont = workbook.createFont();
-        boldFont.setBold(true);
-        boldFont.setFontHeightInPoints((short) 12);
-    }
+
 
 }

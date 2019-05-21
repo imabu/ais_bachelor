@@ -39,6 +39,8 @@ public class GeneralTableView {
                     FXCollections.observableArrayList(dataStr)
             );
         }
+
+        tableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
         tableView.refresh();
     }
 }

@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.stage.FileChooser;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.VistaNavigator;
@@ -14,8 +13,7 @@ import ru.bmstu.database.models.MetadataTable;
 import ru.bmstu.database.models.ReportMetadata;
 import ru.bmstu.parsingexcel.MetadataExcelSheet;
 import ru.bmstu.parsingexcel.MetadataExcelSheetConstructor;
-import ru.bmstu.parsingexcel.WritterToExcel;
-import ru.bmstu.view.modals.AlertVista;
+import ru.bmstu.view.utils.SaveToExcel;
 
 import java.io.File;
 import java.io.IOException;
@@ -69,10 +67,11 @@ public class SelectReportController {
         return this.reportsMetadataMap.get(selectedReport);
     }
 
-
     @FXML
     void saveToExcel(ActionEvent event) throws IOException, SQLException {
-        File fileOut = getFileToSave();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        String initFileName = getSelectedReportMeta().getReportName() + "_" + dateFormat.format(new Date());
+        File fileOut = SaveToExcel.getFileToSave(initFileName);
         if (fileOut != null) {
             logger.debug("Get data from table " + getSelectedReportMeta().getSource());
             MetadataTable metaTable = SelectTableHelper.getMetadataTableFromMySQLMeta(getSelectedReportMeta().getSource());
@@ -80,20 +79,8 @@ public class SelectReportController {
             logger.debug(metaTable.getColumnNames());
             List<List<Object>> data = SelectTableHelper.getDataFromTable(metaTable);
             MetadataExcelSheet metaSheet = MetadataExcelSheetConstructor.get(data, metaTable.getColumnNamesRUS());
-            new WritterToExcel(metaSheet).write(fileOut);
-            logger.info("Data was saved in " + fileOut.getAbsolutePath());
-            AlertVista.throwAlertInfo("Сохранено в " + fileOut.getAbsolutePath());
+            SaveToExcel.save(metaSheet, fileOut);
         }
-    }
-
-    private File getFileToSave() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLSX files (*.xlsx)", "*.xlsx");
-        fileChooser.getExtensionFilters().add(extFilter);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-        String initFileName = getSelectedReportMeta().getReportName() + "_" + dateFormat.format(new Date());
-        fileChooser.setInitialFileName(initFileName + ".xlsx");
-        return fileChooser.showSaveDialog(VistaNavigator.getPrimaryStage());
     }
 
     @FXML

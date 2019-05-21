@@ -6,19 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
-import javafx.stage.FileChooser;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.controlsfx.control.table.TableFilter;
-import ru.bmstu.VistaNavigator;
 import ru.bmstu.database.SelectTableHelper;
 import ru.bmstu.database.models.MetadataTable;
 import ru.bmstu.parsingexcel.MetadataExcelSheet;
 import ru.bmstu.parsingexcel.MetadataExcelSheetConstructor;
-import ru.bmstu.parsingexcel.WritterToExcel;
-import ru.bmstu.view.modals.AlertVista;
 import ru.bmstu.view.utils.Context;
 import ru.bmstu.view.utils.GeneralTableView;
+import ru.bmstu.view.utils.SaveToExcel;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GeneralLookUpController {
+    @FXML
+    private Label nRows;
+
     @FXML
     private Label entityNmLabel;
 
@@ -47,7 +47,9 @@ public class GeneralLookUpController {
     private void initialize() {
         this.saveToExcelButton.setVisible(false);
         this.entityNmLabel.setVisible(false);
+        this.nRows.setVisible(false);
         this.entityNmLabel.setText("");
+        this.nRows.setText("");
     }
 
     private void getContext() {
@@ -64,38 +66,31 @@ public class GeneralLookUpController {
 
         GeneralTableView.buildTableView(this.tableView, this.meta.getColumnNamesRUS(), data);
         TableFilter.forTableView(this.tableView).apply();
-        changeHeaderView(this.meta.getTableNameRUS());
+        changeHeaderView(this.meta.getTableNameRUS(), data.size());
     }
 
     @FXML
     void saveToExcel(ActionEvent event) throws IOException {
-        File fileOut = getFileToSave();
+        File fileOut = SaveToExcel.getFileToSave(this.meta.getTableNameRUS());
         if (fileOut != null) {
             ObservableList<ObservableList<String>> observeItems = tableView.getItems();
             List<List<Object>> data = new ArrayList<>();
             for (ObservableList<String> observeRow : observeItems) {
                 data.add(new ArrayList<>(observeRow));
             }
-
             MetadataExcelSheet metaSheet = MetadataExcelSheetConstructor.get(data, meta.getColumnNamesRUS());
-            new WritterToExcel(metaSheet).write(fileOut);
-            logger.info("Data was saved in " + fileOut.getAbsolutePath());
-            AlertVista.throwAlertInfo("Сохранено в " + fileOut.getAbsolutePath());
+            SaveToExcel.save(metaSheet, fileOut);
         }
     }
 
-    private void changeHeaderView(String header) {
+    private void changeHeaderView(String header, int nrow) {
         this.getDataButton.setVisible(false);
         this.saveToExcelButton.setVisible(true);
         this.entityNmLabel.setVisible(true);
         this.entityNmLabel.setText(header);
+        this.nRows.setVisible(true);
+        this.nRows.setText(nrow == 0 ? "Нет данных" : "Количество строк: " + nrow);
     }
 
-    private File getFileToSave() {
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLSX files (*.xlsx)", "*.xlsx");
-        fileChooser.getExtensionFilters().add(extFilter);
-        fileChooser.setInitialFileName(meta.getTableNameRUS() + ".xlsx");
-        return fileChooser.showSaveDialog(VistaNavigator.getPrimaryStage());
-    }
+
 }

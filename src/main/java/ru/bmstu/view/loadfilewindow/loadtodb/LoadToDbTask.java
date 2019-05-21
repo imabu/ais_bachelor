@@ -36,6 +36,7 @@ public class LoadToDbTask extends Task {
         try {
             connection.createStatement().executeUpdate(query);
         } catch (SQLException ex) {
+            updateLogOut("Сбой загрузки");
             logger.error("SQLException: " + ex.getMessage());
             connection.close();
             throw ex;
@@ -54,15 +55,18 @@ public class LoadToDbTask extends Task {
         }
         List<String> metaColumnDatatype = sheet.getMetaColumnDatatype();
         for (List<Object> row : sheet.getData()) {
+            logger.debug("Column count " + rowHeaders.size());
             for (int i = 0; i < rowHeaders.size(); i += 1) {
                 PrepareStatementHelper.setVariableToStatement(preparedStmnt, i + 1, metaColumnDatatype.get(i), row.get(i));
             }
             try {
+                logger.debug("run insert query");
                 preparedStmnt.executeUpdate();
                 upProgress();
-            } catch (SQLException ex) {
+            } catch (Exception ex) {
                 connection.close();
-                logger.error("SQLException: " + ex.getMessage());
+                updateLogOut("Сбой загрузки");
+                logger.error("Exception: " + ex.getMessage());
                 throw ex;
             }
         }
@@ -73,9 +77,10 @@ public class LoadToDbTask extends Task {
 
     @Override
     protected Object call() throws Exception {
-        this.maxProgressPoint = sheetsMeta.stream().mapToInt(MetadataExcelSheet::getRowNumber).reduce(Integer::sum).getAsInt();
+        this.maxProgressPoint = sheetsMeta.stream().mapToInt(MetadataExcelSheet::getRowNumber).reduce(Integer::sum).getAsInt() + 1;
         upProgress();
         logger.debug("Debug progress: maxProgressPoint = " + this.maxProgressPoint);
+        updateLogOut("Загрузка началась...");
         for (MetadataExcelSheet sheet : sheetsMeta) {
             upProgress();
             loadOneSheet(sheet);
@@ -83,7 +88,9 @@ public class LoadToDbTask extends Task {
             updateLogOut("Лист '" + sheet.getSheetName() + "' загружен в базу данных");
         }
         updateLogOut("Запуск процесса трансформации данных ... ");
+        logger.debug("run etl_main_proc");
         runETLProcess();
+        upProgress();
         updateLogOut("Процесс завершен успешно");
         return null;
     }

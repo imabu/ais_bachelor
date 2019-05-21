@@ -5,6 +5,7 @@ import ru.bmstu.parsingexcel.MetadataExcelSheet;
 import ru.bmstu.parsingexcel.ParseExcelException;
 import ru.bmstu.parsingexcel.ParserExcelSheet;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -12,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws SQLException, ParseExcelException {
+    public static void main(String[] args) throws SQLException, ParseExcelException, IOException {
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         Date date = new Date();
         System.setProperty("logdir", "C:\\Users\\Karina.Kuchaeva\\Documents\\PersonalProjects\\etl_core\\tmp");

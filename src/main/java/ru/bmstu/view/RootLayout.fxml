@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
@@ -10,6 +11,22 @@
 
 <BorderPane fx:id="vistaHolder" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.bmstu.view.MainController">
    <bottom>
-      <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" text="© 2019 " textAlignment="RIGHT" textFill="#4375ff" BorderPane.alignment="CENTER" />
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="602.0" style="-fx-background-color: #ffffff;" text="© 2019 " textAlignment="RIGHT" textFill="#4375ff" BorderPane.alignment="CENTER" GridPane.columnIndex="1" />
+            <Hyperlink fx:id="hyperlinkAbout" onAction="#openAbout" style="-fx-border-color: transparent;" text="Справка" textFill="#4375ff">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </GridPane>
    </bottom>
 </BorderPane>

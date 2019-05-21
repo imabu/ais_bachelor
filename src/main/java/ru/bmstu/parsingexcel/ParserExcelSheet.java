@@ -21,7 +21,7 @@ public class ParserExcelSheet {
         this.excel = excel;
     }
 
-    public List<List<Object>> parse() throws ParseExcelException{
+    public List<List<Object>> parse() throws ParseExcelException, IOException {
         List<List<Object>> sheetData = new ArrayList<>();
         List<String> rowHeaders = new ArrayList<>();
         int readRows = 0;
@@ -30,7 +30,7 @@ public class ParserExcelSheet {
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = workbook.getSheet(excel.getSheetName());
             if (datatypeSheet == null) {
-                throw new ParseExcelException("Sheet " + excel.getSheetName() + "not found in file", excel.getSheetName(),
+                throw new ParseExcelException("Sheet '" + excel.getSheetName() + "' not found in file", excel.getSheetName(),
                         ParseExcelException.ParceExceptionType.SHEET_NOT_FOUND);
             }
             int COLUMN_CN = 0;
@@ -53,15 +53,16 @@ public class ParserExcelSheet {
                     }
                 }
             }
+            excelFile.close();
         } catch (IOException e) {
+
             logger.error(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.error(e);
+            throw e;
         }
         excel.setRowNumber(readRows);
         excel.setRowHeaders(rowHeaders);
         excel.setData(sheetData);
+
         logger.info("Read " + readRows + " rows");
         return sheetData;
     }

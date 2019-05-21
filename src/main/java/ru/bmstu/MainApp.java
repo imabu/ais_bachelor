@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import ru.bmstu.database.ConnectionUtil;
+import ru.bmstu.view.MainController;
 import ru.bmstu.view.modals.AlertVista;
 import ru.bmstu.view.utils.Context;
 
@@ -44,7 +45,9 @@ public class MainApp extends Application {
         primaryStage.setTitle(VistaNavigator.APP_NM);
         Pane rootLayer = initRootLayout();
         VistaNavigator.loadVista(VistaNavigator.START_WINDOW);
-        primaryStage.setScene(new Scene(rootLayer));
+        Scene scene = new Scene(rootLayer);
+        primaryStage.setResizable(false);
+        primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image(String.valueOf(MainApp.class.getResource(VistaNavigator.ICON_FILE))));
         primaryStage.show();
         ConnectionUtil.checkConnection();
@@ -62,7 +65,9 @@ public class MainApp extends Application {
             }else {
                 loader.setLocation(rootLayoutPath);
                 rootLayout = (BorderPane) loader.load();
-                VistaNavigator.setMainController(loader.getController());
+                MainController mainController = loader.getController();
+                VistaNavigator.setMainController(mainController);
+                mainController.createHostServices(this);
             }
         } catch (IOException e) {
             logger.error(e.getMessage());

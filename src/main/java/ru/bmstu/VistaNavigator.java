@@ -24,6 +24,7 @@ public class VistaNavigator {
     public static final String ICON_FILE = "/logo.png";
     private static Logger logger = LogManager.getLogger(VistaNavigator.class.getName());
 
+
     private static MainController mainController;
 
     public static void setMainController(MainController mainController) {
@@ -50,6 +51,7 @@ public class VistaNavigator {
             stage.getIcons().add(new Image(String.valueOf(VistaNavigator.class.getResource(ICON_FILE))));
             stage.setTitle(APP_NM);
             stage.setScene(scene);
+            stage.setResizable(true);
             stage.show();
             return fxmlLoader.getController();
         } catch (IOException e) {
