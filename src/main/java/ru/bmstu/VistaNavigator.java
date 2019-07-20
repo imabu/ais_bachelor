@@ -20,7 +20,7 @@ public class VistaNavigator {
     public static final String LOOK_UP_WINDOW = "/ru/bmstu/view/lookupwindow/LookupWindow.fxml";
     public static final String GENERAL_LOOK_UP_WINDOW = "/ru/bmstu/view/lookupwindow/GeneralLookUpWindow.fxml";
 
-    public static final String APP_NM = "АИС БлаБла";
+    public static final String APP_NM = "ИАС АУЭ";
     public static final String ICON_FILE = "/logo.png";
     private static Logger logger = LogManager.getLogger(VistaNavigator.class.getName());
 

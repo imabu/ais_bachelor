@@ -42,12 +42,7 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.0</version>
         </dependency>
-        <!-- Custom excel-parser / mb to delete-->
-        <dependency>
-            <groupId>org.javafunk</groupId>
-            <artifactId>excel-parser</artifactId>
-            <version>1.0</version>
-        </dependency>
+
 
         <!-- Logging framework-->
         <dependency>
